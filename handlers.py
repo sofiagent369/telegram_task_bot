@@ -5,6 +5,13 @@ import utils
 
 tasks = []
 
+def load_tasks():
+    global tasks
+    tasks = utils.load_tasks()
+
+def save_tasks():
+    utils.save_tasks(tasks)
+
 def add_task(update: Update, context: CallbackContext) -> None:
     if len(context.args) < 2:
         update.message.reply_text('Uso incorrecto. Ejemplo: /agregar "Tarea" "YYYY-MM-DD HH:MM"')
@@ -22,6 +29,7 @@ def add_task(update: Update, context: CallbackContext) -> None:
         'reminder': reminder_time
     }
     tasks.append(task)
+    save_tasks()
     update.message.reply_text(f'Tarea agregada: "{task_description}" con recordatorio para {utils.format_date(reminder_time)}')
 
 def list_tasks(update: Update, context: CallbackContext) -> None:
@@ -41,6 +49,7 @@ def delete_task(update: Update, context: CallbackContext) -> None:
         task_index = int(context.args[0]) - 1
         if 0 <= task_index < len(tasks):
             deleted_task = tasks.pop(task_index)
+            save_tasks()
             update.message.reply_text(f'Tarea eliminada: "{deleted_task["description"]}" con recordatorio para {utils.format_date(deleted_task["reminder"])}')
         else:
             update.message.reply_text('Índice de tarea no válido.')

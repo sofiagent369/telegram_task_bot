@@ -15,6 +15,10 @@
     {
       "content": "Agente ⚙️ Experto Backend completó: Implementar comando /help. Archivos: main.py",
       "timestamp": "2026-06-24T02:18:05.926882"
+    },
+    {
+      "content": "Agente ⚙️ Experto Backend completó: Crear lógica para manejar tareas y recordatorios. Archivos: handlers.py, main.py, utils.py",
+      "timestamp": "2026-06-24T02:22:07.083245"
     }
   ],
   "decisions": [],
@@ -34,6 +38,10 @@
     "tools_api_agent": [
       ".env",
       "requirements.txt"
+    ],
+    "persistence_agent": [
+      "utils.py",
+      "handlers.py"
     ]
   }
 }
