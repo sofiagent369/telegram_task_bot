@@ -1,0 +1,135 @@
+{
+  "project_name": "telegram_task_bot",
+  "description": "Bot de Telegram para gestionar tareas y recordatorios con persistencia usando Python y python-telegram-bot",
+  "tech_stack": [
+    "Python",
+    "python-telegram-bot"
+  ],
+  "tasks": [
+    {
+      "title": "Crear estructura del proyecto",
+      "description": "Crear directorio del proyecto, archivos main.py, handlers.py, utils.py, requirements.txt, README.md",
+      "assigned_to": "backend_expert",
+      "dependencies": [],
+      "priority": 1
+    },
+    {
+      "title": "Configurar entorno virtual y dependencias",
+      "description": "Crear un entorno virtual e instalar python-telegram-bot, agregar dependencias a requirements.txt",
+      "assigned_to": "tools_api_agent",
+      "dependencies": [
+        "task_001"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "Implementar comando /start",
+      "description": "En main.py: configurar el bot y manejar el comando /start para enviar una bienvenida al usuario",
+      "assigned_to": "backend_expert",
+      "dependencies": [
+        "task_001",
+        "task_002"
+      ],
+      "priority": 3
+    },
+    {
+      "title": "Implementar comando /help",
+      "description": "En main.py: manejar el comando /help para mostrar una lista de comandos disponibles al usuario",
+      "assigned_to": "backend_expert",
+      "dependencies": [
+        "task_001",
+        "task_002"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "Crear lógica para manejar tareas y recordatorios",
+      "description": "En handlers.py: implementar funciones para agregar, listar y eliminar tareas, incluyendo recordatorios",
+      "assigned_to": "backend_expert",
+      "dependencies": [
+        "task_001"
+      ],
+      "priority": 5
+    },
+    {
+      "title": "Implementar persistencia en JSON",
+      "description": "En utils.py: crear funciones para cargar y guardar tareas y recordatorios a partir de un archivo tasks.json",
+      "assigned_to": "persistence_agent",
+      "dependencies": [
+        "task_001",
+        "task_005"
+      ],
+      "priority": 6
+    },
+    {
+      "title": "Integrar persistencia en el bot",
+      "description": "En main.py: conectar las funciones de handlers con la persistencia JSON",
+      "assigned_to": "backend_expert",
+      "dependencies": [
+        "task_001",
+        "task_002",
+        "task_005",
+        "task_006"
+      ],
+      "priority": 7
+    },
+    {
+      "title": "Implementar manejo de errores robusto",
+      "description": "En main.py y handlers.py: agregar manejo de excepciones para comandos incorrectos y operaciones inválidas",
+      "assigned_to": "backend_expert",
+      "dependencies": [
+        "task_001",
+        "task_002"
+      ],
+      "priority": 8
+    },
+    {
+      "title": "Configurar logging",
+      "description": "En utils.py: implementar logging para registrar eventos y errores en un archivo log.txt",
+      "assigned_to": "backend_expert",
+      "dependencies": [
+        "task_001"
+      ],
+      "priority": 9
+    },
+    {
+      "title": "Integrar logging en el bot",
+      "description": "En main.py: conectar las funciones de handlers con el sistema de logging",
+      "assigned_to": "backend_expert",
+      "dependencies": [
+        "task_001",
+        "task_002",
+        "task_009"
+      ],
+      "priority": 10
+    },
+    {
+      "title": "Escribir README.md",
+      "description": "Crear README.md con descripción del proyecto, comandos disponibles, instrucciones de deploy y screenshot placeholder",
+      "assigned_to": "writer_agent",
+      "dependencies": [
+        "task_001",
+        "task_002"
+      ],
+      "priority": 11
+    },
+    {
+      "title": "Probar el bot",
+      "description": "Realizar pruebas manuales para asegurar que todos los comandos funcionen correctamente y la persistencia funcione como esperado",
+      "assigned_to": "manager",
+      "dependencies": [
+        "task_001",
+        "task_002",
+        "task_003",
+        "task_004",
+        "task_005",
+        "task_006",
+        "task_007",
+        "task_008",
+        "task_009",
+        "task_010"
+      ],
+      "priority": 12
+    }
+  ]
+}
