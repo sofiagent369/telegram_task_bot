@@ -16,8 +16,9 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("ayuda", handlers.help_command))
     dispatcher.add_handler(CommandHandler("help", handlers.help_command))
-
-    # Add more command handlers here...
+    dispatcher.add_handler(CommandHandler("agregar", handlers.add_task))
+    dispatcher.add_handler(CommandHandler("listar", handlers.list_tasks))
+    dispatcher.add_handler(CommandHandler("eliminar", handlers.delete_task))
 
     updater.start_polling()
     updater.idle()

@@ -18,3 +18,5 @@
 [2026-06-24 02:15:02] [IN_PROGRESS] task_003: Implementar comando /start
 [2026-06-24 02:16:26] [COMPLETED] task_003: Implementar comando /start
 [2026-06-24 02:16:29] [IN_PROGRESS] task_004: Implementar comando /help
+[2026-06-24 02:18:05] [COMPLETED] task_004: Implementar comando /help
+[2026-06-24 02:18:08] [IN_PROGRESS] task_005: Crear lógica para manejar tareas y recordatorios

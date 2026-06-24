@@ -63,24 +63,26 @@
       "title": "Implementar comando /help",
       "description": "En main.py: manejar el comando /help para mostrar una lista de comandos disponibles al usuario",
       "assigned_to": "backend_expert",
-      "status": "in_progress",
+      "status": "completed",
       "priority": 4,
       "dependencies": [
         "task_001",
         "task_002"
       ],
-      "output_files": [],
-      "output_summary": "",
+      "output_files": [
+        "main.py"
+      ],
+      "output_summary": "### Explicación\n\nPara completar la tarea de implementar el comando `/help` en `main.py`, ya tenemos la función `help_command` definida en `handlers.py`. Ahora, necesitamos asegurarnos de que este comando esté correctamente configurado y que se maneje adecuadamente en `main.py`.\n\n### Archivos\n\n1. **m | Archivos: main.py",
       "created_at": "2026-06-24T02:10:48.725535",
       "started_at": "2026-06-24T02:16:29.433572",
-      "completed_at": null
+      "completed_at": "2026-06-24T02:18:05.911015"
     },
     {
       "id": "task_005",
       "title": "Crear lógica para manejar tareas y recordatorios",
       "description": "En handlers.py: implementar funciones para agregar, listar y eliminar tareas, incluyendo recordatorios",
       "assigned_to": "backend_expert",
-      "status": "pending",
+      "status": "in_progress",
       "priority": 5,
       "dependencies": [
         "task_001"
@@ -88,7 +90,7 @@
       "output_files": [],
       "output_summary": "",
       "created_at": "2026-06-24T02:10:48.733134",
-      "started_at": null,
+      "started_at": "2026-06-24T02:18:08.669472",
       "completed_at": null
     },
     {
@@ -221,5 +223,5 @@
       "completed_at": null
     }
   ],
-  "updated_at": "2026-06-24T02:16:29.433572"
+  "updated_at": "2026-06-24T02:18:08.669472"
 }
