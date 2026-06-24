@@ -1,0 +1,155 @@
+### Resumen de Errores y Correcciones
+
+1. **Errores de Sintaxis**: No se encontraron errores de sintaxis en el código proporcionado.
+
+2. **Imports Faltantes**:
+   - En `main.py`, se importa `logging` pero no está definido. Debería agregarse `import logging`.
+
+3. **Rutas Incorrectas entre Archivos**:
+   - No se encontraron problemas con las rutas entre archivos en el código proporcionado.
+
+4. **Variables No Definidas**:
+   - En `handlers.py`, la función `add_task` hace referencia a `utils.format_date` que no existe en ese archivo. Debería importarse desde `utils`.
+
+5. **Archivos Referenciados pero No Creados**:
+   - El archivo `telegram_token.txt` es referenciado en `main.py` para leer el token del bot, pero no se proporciona en la lista de archivos existentes.
+
+### Correcciones
+
+1. **Corregir Importaciones y Referencias**:
+
+   - En `handlers.py`, importar `format_date` desde `utils`.
+
+2. **Añadir Archivo Faltante**:
+
+   - Crear el archivo `telegram_token.txt` con un token de bot válido.
+
+### Código Corregido
+
+FILE_PATH: main.py
+```python
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, CallbackContext
+import handlers
+import logging
+
+def start(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text('Hola! Soy un bot de tareas. Usa /ayuda para ver los comandos disponibles.')
+    logging.info(f"Bot started by {update.effective_user.first_name}.")
+
+def main() -> None:
+    try:
+        with open("telegram_token.txt", "r") as token_file:
+            token = token_file.read().strip()
+    except FileNotFoundError as e:
+        logging.error(f"Error reading the token file: {e}")
+        return
+
+    # Cargar las tareas al iniciar el bot
+    handlers.load_tasks()
+
+    updater = Updater(token)
+
+    dispatcher = updater.dispatcher
+
+    dispatcher.add_handler(CommandHandler("start", start))
+    dispatcher.add_handler(CommandHandler("ayuda", handlers.help_command))
+    dispatcher.add_handler(CommandHandler("help", handlers.help_command))
+    dispatcher.add_handler(CommandHandler("agregar", handlers.add_task))
+    dispatcher.add_handler(CommandHandler("listar", handlers.list_tasks))
+    dispatcher.add_handler(CommandHandler("eliminar", handlers.delete_task))
+
+    # Guardar las tareas al terminar el bot
+    def shutdown():
+        try:
+            handlers.save_tasks()
+            logging.info("Bot is shutting down and saving tasks.")
+        except Exception as e:
+            logging.error(f"Error while shutting down: {e}")
+
+    updater.dispatcher.add_error_handler(shutdown)
+
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
+```
+
+FILE_PATH: handlers.py
+```python
+from telegram import Update, ParseMode
+from telegram.ext import CallbackContext
+import datetime
+import utils
+
+tasks = []
+
+def load_tasks():
+    global tasks
+    try:
+        tasks = utils.load_tasks()
+    except Exception as e:
+        print(f"Error al cargar tareas: {e}")
+        tasks = []
+
+def save_tasks():
+    try:
+        utils.save_tasks(tasks)
+    except Exception as e:
+        print(f"Error al guardar tareas: {e}")
+
+def add_task(update: Update, context: CallbackContext) -> None:
+    if len(context.args) < 2:
+        update.message.reply_text('Uso incorrecto. Ejemplo: /agregar "Tarea" "YYYY-MM-DD HH:MM"')
+        return
+
+    task_description = ' '.join(context.args[:-1])
+    try:
+        reminder_time = datetime.datetime.strptime(context.args[-1], "%Y-%m-%d %H:%M")
+    except ValueError as e:
+        update.message.reply_text('Formato de fecha incorrecto. Use YYYY-MM-DD HH:MM.')
+        return
+
+    task = {
+        'description': task_description,
+        'reminder': reminder_time
+    }
+    tasks.append(task)
+    save_tasks()
+    update.message.reply_text(f'Tarea agregada: "{task_description}" con recordatorio para {utils.format_date(reminder_time)}')
+
+def list_tasks(update: Update, context: CallbackContext) -> None:
+    if not tasks:
+        update.message.reply_text('No hay tareas en la lista.')
+        return
+
+    task_list = "\n".join([f"{i+1}. {task['description']} - Recordatorio: {utils.format_date(task['reminder'])}" for i, task in enumerate(tasks)])
+    update.message.reply_text(f'Tareas pendientes:\n{task_list}', parse_mode=ParseMode.MARKDOWN)
+
+def delete_task(update: Update, context: CallbackContext) -> None:
+    if len(context.args) < 1:
+        update.message.reply_text('Uso incorrecto. Ejemplo: /eliminar 1')
+        return
+
+    try:
+        task_index = int(context.args[0]) - 1
+        if 0 <= task_index < len(tasks):
+            deleted_task = tasks.pop(task_index)
+            save_tasks()
+            update.message.reply_text(f'Tarea eliminada: "{deleted_task["description"]}" con recordatorio para {utils.format_date(deleted_task["reminder"])}')
+        else:
+            update.message.reply_text('Índice de tarea no válido.')
+    except ValueError as e:
+        update.message.reply_text('El índice debe ser un número.')
+
+def help_command(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text('Comandos disponibles:\n/start - Iniciar el bot\n/ayuda - Ver comandos disponibles\n/agregar "Tarea" "YYYY-MM-DD HH:MM" - Agregar una tarea con recordatorio\n/listar - Listar todas las tareas\n/eliminar <índice> - Eliminar una tarea por índice')
+```
+
+FILE_PATH: telegram_token.txt
+```txt
+<tu_token_de_bot_aquí>
+```
+
+**Nota**: Asegúrate de reemplazar `<tu_token_de_bot_aquí>` con el token real del bot de Telegram que estés utilizando.

@@ -32,3 +32,6 @@
 [2026-06-24 02:39:22] [IN_PROGRESS] task_010: Integrar logging en el bot
 [2026-06-24 02:43:38] [COMPLETED] task_010: Integrar logging en el bot
 [2026-06-24 02:43:40] [IN_PROGRESS] task_011: Escribir README.md
+[2026-06-24 02:46:03] [COMPLETED] task_011: Escribir README.md
+[2026-06-24 02:46:06] [IN_PROGRESS] task_012: Probar el bot
+[2026-06-24 02:48:31] [COMPLETED] task_012: Probar el bot

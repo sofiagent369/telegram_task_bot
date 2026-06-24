@@ -1,6 +1,7 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 import handlers
+import logging
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Hola! Soy un bot de tareas. Usa /ayuda para ver los comandos disponibles.')
