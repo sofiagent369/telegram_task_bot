@@ -26,3 +26,7 @@
 [2026-06-24 02:27:34] [IN_PROGRESS] task_007: Integrar persistencia en el bot
 [2026-06-24 02:29:46] [COMPLETED] task_007: Integrar persistencia en el bot
 [2026-06-24 02:29:49] [IN_PROGRESS] task_008: Implementar manejo de errores robusto
+[2026-06-24 02:35:01] [COMPLETED] task_008: Implementar manejo de errores robusto
+[2026-06-24 02:35:03] [IN_PROGRESS] task_009: Configurar logging
+[2026-06-24 02:39:20] [COMPLETED] task_009: Configurar logging
+[2026-06-24 02:39:22] [IN_PROGRESS] task_010: Integrar logging en el bot

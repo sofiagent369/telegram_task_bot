@@ -4,13 +4,14 @@ import handlers
 
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Hola! Soy un bot de tareas. Usa /ayuda para ver los comandos disponibles.')
+    logging.info(f"Bot started by {update.effective_user.first_name}.")
 
 def main() -> None:
     try:
         with open("telegram_token.txt", "r") as token_file:
             token = token_file.read().strip()
     except FileNotFoundError as e:
-        print(f"Error al leer el token: {e}")
+        logging.error(f"Error reading the token file: {e}")
         return
 
     # Cargar las tareas al iniciar el bot
@@ -31,8 +32,9 @@ def main() -> None:
     def shutdown():
         try:
             handlers.save_tasks()
+            logging.info("Bot is shutting down and saving tasks.")
         except Exception as e:
-            print(f"Error al guardar tareas en shutdown: {e}")
+            logging.error(f"Error while shutting down: {e}")
 
     updater.dispatcher.add_error_handler(shutdown)
 
