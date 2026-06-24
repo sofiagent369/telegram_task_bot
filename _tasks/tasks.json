@@ -180,25 +180,28 @@
       "title": "Integrar logging en el bot",
       "description": "En main.py: conectar las funciones de handlers con el sistema de logging",
       "assigned_to": "backend_expert",
-      "status": "in_progress",
+      "status": "completed",
       "priority": 10,
       "dependencies": [
         "task_001",
         "task_002",
         "task_009"
       ],
-      "output_files": [],
-      "output_summary": "",
+      "output_files": [
+        "utils.py",
+        "main.py"
+      ],
+      "output_summary": "Para integrar el sistema de logging en el bot, vamos a realizar las siguientes modificaciones:\n\n1. **Configurar el logger** en `utils.py` para que puedas registrar mensajes en un archivo llamado `log.txt`.\n2. **Conectar las funciones de los manejadores** (`handlers`) con el logger definido en `utils | Archivos: utils.py, main.py",
       "created_at": "2026-06-24T02:10:48.771272",
       "started_at": "2026-06-24T02:39:22.735949",
-      "completed_at": null
+      "completed_at": "2026-06-24T02:43:38.031601"
     },
     {
       "id": "task_011",
       "title": "Escribir README.md",
       "description": "Crear README.md con descripción del proyecto, comandos disponibles, instrucciones de deploy y screenshot placeholder",
       "assigned_to": "writer_agent",
-      "status": "pending",
+      "status": "in_progress",
       "priority": 11,
       "dependencies": [
         "task_001",
@@ -207,7 +210,7 @@
       "output_files": [],
       "output_summary": "",
       "created_at": "2026-06-24T02:10:48.776661",
-      "started_at": null,
+      "started_at": "2026-06-24T02:43:40.781661",
       "completed_at": null
     },
     {
@@ -236,5 +239,5 @@
       "completed_at": null
     }
   ],
-  "updated_at": "2026-06-24T02:39:22.735949"
+  "updated_at": "2026-06-24T02:43:40.781661"
 }
