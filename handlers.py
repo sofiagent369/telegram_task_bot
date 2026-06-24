@@ -7,10 +7,17 @@ tasks = []
 
 def load_tasks():
     global tasks
-    tasks = utils.load_tasks()
+    try:
+        tasks = utils.load_tasks()
+    except Exception as e:
+        print(f"Error al cargar tareas: {e}")
+        tasks = []
 
 def save_tasks():
-    utils.save_tasks(tasks)
+    try:
+        utils.save_tasks(tasks)
+    except Exception as e:
+        print(f"Error al guardar tareas: {e}")
 
 def add_task(update: Update, context: CallbackContext) -> None:
     if len(context.args) < 2:
@@ -20,7 +27,7 @@ def add_task(update: Update, context: CallbackContext) -> None:
     task_description = ' '.join(context.args[:-1])
     try:
         reminder_time = datetime.datetime.strptime(context.args[-1], "%Y-%m-%d %H:%M")
-    except ValueError:
+    except ValueError as e:
         update.message.reply_text('Formato de fecha incorrecto. Use YYYY-MM-DD HH:MM.')
         return
 
@@ -53,7 +60,7 @@ def delete_task(update: Update, context: CallbackContext) -> None:
             update.message.reply_text(f'Tarea eliminada: "{deleted_task["description"]}" con recordatorio para {utils.format_date(deleted_task["reminder"])}')
         else:
             update.message.reply_text('Índice de tarea no válido.')
-    except ValueError:
+    except ValueError as e:
         update.message.reply_text('El índice debe ser un número.')
 
 def help_command(update: Update, context: CallbackContext) -> None:

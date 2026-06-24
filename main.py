@@ -6,8 +6,12 @@ def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Hola! Soy un bot de tareas. Usa /ayuda para ver los comandos disponibles.')
 
 def main() -> None:
-    with open("telegram_token.txt", "r") as token_file:
-        token = token_file.read().strip()
+    try:
+        with open("telegram_token.txt", "r") as token_file:
+            token = token_file.read().strip()
+    except FileNotFoundError as e:
+        print(f"Error al leer el token: {e}")
+        return
 
     # Cargar las tareas al iniciar el bot
     handlers.load_tasks()
@@ -25,7 +29,10 @@ def main() -> None:
 
     # Guardar las tareas al terminar el bot
     def shutdown():
-        handlers.save_tasks()
+        try:
+            handlers.save_tasks()
+        except Exception as e:
+            print(f"Error al guardar tareas en shutdown: {e}")
 
     updater.dispatcher.add_error_handler(shutdown)
 

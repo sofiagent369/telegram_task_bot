@@ -122,7 +122,7 @@
       "title": "Integrar persistencia en el bot",
       "description": "En main.py: conectar las funciones de handlers con la persistencia JSON",
       "assigned_to": "backend_expert",
-      "status": "in_progress",
+      "status": "completed",
       "priority": 7,
       "dependencies": [
         "task_001",
@@ -130,18 +130,21 @@
         "task_005",
         "task_006"
       ],
-      "output_files": [],
-      "output_summary": "",
+      "output_files": [
+        "main.py",
+        ".env.example"
+      ],
+      "output_summary": "### Explicación\n\nPara integrar la persistencia en el bot, necesitamos asegurarnos de que las tareas se carguen y guarden correctamente cada vez que se inicia o termina el bot. Esto implica conectar las funciones de los manejadores (`handlers`) con las funciones de persistencia definidas en `utils.py | Archivos: main.py, .env.example",
       "created_at": "2026-06-24T02:10:48.744817",
       "started_at": "2026-06-24T02:27:34.432432",
-      "completed_at": null
+      "completed_at": "2026-06-24T02:29:46.951936"
     },
     {
       "id": "task_008",
       "title": "Implementar manejo de errores robusto",
       "description": "En main.py y handlers.py: agregar manejo de excepciones para comandos incorrectos y operaciones inválidas",
       "assigned_to": "backend_expert",
-      "status": "pending",
+      "status": "in_progress",
       "priority": 8,
       "dependencies": [
         "task_001",
@@ -150,7 +153,7 @@
       "output_files": [],
       "output_summary": "",
       "created_at": "2026-06-24T02:10:48.744817",
-      "started_at": null,
+      "started_at": "2026-06-24T02:29:49.492694",
       "completed_at": null
     },
     {
@@ -230,5 +233,5 @@
       "completed_at": null
     }
   ],
-  "updated_at": "2026-06-24T02:27:34.432432"
+  "updated_at": "2026-06-24T02:29:49.492694"
 }
