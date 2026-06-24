@@ -22,3 +22,5 @@
 [2026-06-24 02:18:08] [IN_PROGRESS] task_005: Crear lógica para manejar tareas y recordatorios
 [2026-06-24 02:22:07] [COMPLETED] task_005: Crear lógica para manejar tareas y recordatorios
 [2026-06-24 02:22:09] [IN_PROGRESS] task_006: Implementar persistencia en JSON
+[2026-06-24 02:27:31] [COMPLETED] task_006: Implementar persistencia en JSON
+[2026-06-24 02:27:34] [IN_PROGRESS] task_007: Integrar persistencia en el bot

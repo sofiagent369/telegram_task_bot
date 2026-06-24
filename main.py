@@ -9,6 +9,9 @@ def main() -> None:
     with open("telegram_token.txt", "r") as token_file:
         token = token_file.read().strip()
 
+    # Cargar las tareas al iniciar el bot
+    handlers.load_tasks()
+
     updater = Updater(token)
 
     dispatcher = updater.dispatcher
@@ -19,6 +22,12 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("agregar", handlers.add_task))
     dispatcher.add_handler(CommandHandler("listar", handlers.list_tasks))
     dispatcher.add_handler(CommandHandler("eliminar", handlers.delete_task))
+
+    # Guardar las tareas al terminar el bot
+    def shutdown():
+        handlers.save_tasks()
+
+    updater.dispatcher.add_error_handler(shutdown)
 
     updater.start_polling()
     updater.idle()
