@@ -15,6 +15,7 @@ def main() -> None:
 
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("ayuda", handlers.help_command))
+    dispatcher.add_handler(CommandHandler("help", handlers.help_command))
 
     # Add more command handlers here...
 
